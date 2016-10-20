@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="[%d{yyyy-MM-dd HH:mm:ss} %5p %c:%L] %m%n"/>
+        </Console>
+        <RollingFile name="SLOW_SQL_FILE" fileName="${catalina.base}/logs/db.slowsql.log" filePattern="${catalina.base}/logs/db.slowsql.%d{yyyy-MM-dd}.log">
+            <PatternLayout charset="UTF-8" pattern="[%d{yyyy-MM-dd HH:mm:ss} %5p %c:%L] %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <Logger name="com.ibatis.common.jdbc" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="java.sql.PreparedStatement" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="com.alibaba.druid.filter.stat.StatFilter" level="info" additivity="false">
+            <AppenderRef ref="SLOW_SQL_FILE"/>
+        </Logger>
+    </Loggers>
+</Configuration>

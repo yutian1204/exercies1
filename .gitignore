@@ -1,0 +1,7 @@
+.DS_Store
+stockgame.iml
+target/
+logs/
+.idea/
+feed.*
+main.iml
