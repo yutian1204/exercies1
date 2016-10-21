@@ -35,10 +35,11 @@
         </property>
     </bean>
 
+    <mvc:annotation-driven />
+
     <mvc:resources mapping="/images/**" location="/images/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/templates/**" location="/templates/"/>
-    <mvc:resources mapping="/healthcheck.html" location="/"/>
 
 </beans>
