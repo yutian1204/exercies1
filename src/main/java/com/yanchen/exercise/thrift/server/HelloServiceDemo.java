@@ -5,14 +5,19 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TTransportException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by yuyanchen on 16/10/20.
  */
-@Service
+@Controller
+@RequestMapping(value = "/thrift")
 public class HelloServiceDemo {
 
+    @RequestMapping(value = "/serverStart")
+    @ResponseBody
     public void startServer() {
         System.out.println("TSimpleServer start ...");
         com.yanchen.exercise.thrift.server.HelloWorldService.Processor<com.yanchen.exercise.thrift.server.HelloWorldService.Iface> processor = new com.yanchen.exercise.thrift.server.HelloWorldService.Processor<>(new HelloWorldImpl());
@@ -28,9 +33,5 @@ public class HelloServiceDemo {
             System.out.println("TSimpleServer start error !!!");
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        new HelloServiceDemo().startServer();
     }
 }

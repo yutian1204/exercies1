@@ -21,5 +21,4 @@ public class TestService {
         int i = testDao.selectActivityCount();
         return i;
     }
-
 }
